@@ -80,6 +80,7 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot2][product-screenshot2]](https://example.com)
 
 There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
@@ -213,3 +214,4 @@ Project Link: [https://github.com/amatosolivo/Localizacion](https://github.com/a
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/amatosolivo
 [product-screenshot]: images/screenshot.png
+[product-screenshot2]: images/screenshot2.png
