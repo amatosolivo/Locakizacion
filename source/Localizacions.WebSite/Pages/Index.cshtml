@@ -1,0 +1,15 @@
+﻿@page
+@using Localizaciones.WebSite.Componentes
+@model IndexModel
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Localizacion de Clientes</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@(await Html.RenderComponentAsync<ListaPersonas>(RenderMode.ServerPrerendered))
+
+<script src="_framework/blazor.server.js"></script>

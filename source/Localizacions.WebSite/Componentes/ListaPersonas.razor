@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Localizaciones.WebSite.Modelos
+@using Localizaciones.WebSite.Servicios
+@inject ArchivoJsonPersonasServicio PersonaServicio
+
+
+<div class="card-columns">
+    @foreach (var persona in PersonaServicio.GetPersonas())
+    {
+        <div class="card">
+            <div class="card-img" style="background-image: url('@persona.Foto');"></div>
+            <div class="card-body">
+                <h5 class="card-title">@persona.Nombres @persona.PrimerApellido</h5>
+            </div>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">
+                <button @onclick="(e => SeleccionarPersona(persona.PersonaId))"
+                        data-toggle="modal" data-target="#personaModal" class="btn btn-primary">
+                    Mas informacion
+                </button>
+            </small>
+        </div>
+    }
+</div>
+
+@if (personaSeleccionada != null)
+{
+    <div class="modal fade" id="personaModal" tabindex="-1" role="dialog" aria-labelledby="tituloPersona" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloPersona">@personaSeleccionada.Nombres</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('@personaSeleccionada.Foto');">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">@personaSeleccionada.PrimerApellido</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @foreach (var direccion in personaSeleccionada.Direcciones)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <b>@direccion.Descripcion</b><br />
+                                Calle:@direccion.Calle<br />
+                                Ciudad:@direccion.Ciudad<br />
+                                Sector:@direccion.Sector<br />
+                                SubSector:@direccion.SubSector
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    Persona personaSeleccionada;
+    string personaIdSeleccionada;
+
+    void SeleccionarPersona(string personaId)
+    {
+        personaIdSeleccionada = personaId;
+        personaSeleccionada = PersonaServicio.GetPersonas().First(x => x.PersonaId == personaId);
+    }
+}
